@@ -50,6 +50,21 @@ public class Matrices {
         return matrixResult;
     }
 
+    public static int[][] getMultiplicationMatrix(int[][] matrixOne, int[][] matrixTwo, int rowsOne, int colsOne, int colsTwo) {
+        int[][] matrixResult = new int[rowsOne][colsTwo];
+
+        for (int i = 0; i < rowsOne; i++) {
+            for (int j = 0; j < colsTwo; j++) {
+                matrixResult[i][j] = 0;
+                for (int k = 0; k < colsOne; k++) {
+                    matrixResult[i][j] += matrixOne[i][k] * matrixTwo[k][j];
+                }
+            }
+        }
+
+        return matrixResult;
+    }
+
     public static void displayResult(int[][] matrixResult, int rows, int cols) {
         //display
         System.out.println("Result:");
@@ -113,6 +128,7 @@ public class Matrices {
                 break;
             case 2:
                 System.out.println("Subtraction Matrix");
+
                 System.out.print("Number of rows of First Matrix: ");
                 matrixRowOne = input.nextInt();
 
@@ -125,45 +141,21 @@ public class Matrices {
                 System.out.print("Number of column of Second Matrix: ");
                 matrixColTwo = input.nextInt();
 
-                matrixOne = new int[matrixRowOne][matrixColOne];
-                matrixTwo = new int[matrixRowTwo][matrixColTwo];
-                matrixResult = new int[matrixRowOne][matrixColOne];
-
-                if (matrixOne.length != matrixTwo.length) {
-                    System.out.print("Two sizes are not match.");
+                if (matrixRowOne != matrixRowTwo || matrixColOne != matrixColTwo) {
+                    System.out.println("Two sizes are not match.");
                     break;
                 }
 
-                for (int rowIndex = 0; rowIndex < matrixTwo.length; rowIndex++) {
-                    for (int colIndex = 0; colIndex < matrixTwo.length; colIndex++) {
-                        System.out.print("Enter Second Matrix number in index [" + (rowIndex + 1) + "] [" + (colIndex + 1) + "]: ");
-                        matrixOne[rowIndex][colIndex] = input.nextInt();
-                    }
-                }
+                matrixOne = getMatrixInput(input, matrixRowOne, matrixColOne, "First");
+                matrixTwo = getMatrixInput(input, matrixRowTwo, matrixColTwo, "Second");
 
-                for (int rowIndex = 0; rowIndex < matrixTwo.length; rowIndex++) {
-                    for (int colIndex = 0; colIndex < matrixTwo.length; colIndex++) {
-                        System.out.print("Enter Second Matrix number in index [" + (rowIndex + 1) + "] [" + (colIndex + 1) + "]: ");
-                        matrixTwo[rowIndex][colIndex] = input.nextInt();
-                    }
-                }
+                matrixResult = getSubtractionMatrixResult(matrixOne, matrixTwo, matrixRowOne, matrixColOne);
 
-                for (int i = 0; i < matrixOne.length; i++) {
-                    for (int j = 0; j < matrixOne.length; j++) {
-                        matrixResult[i][j] = 0;
-                        matrixResult[i][j] = matrixOne[i][j] - matrixTwo[i][j];
-                    }
-                }
-
-                System.out.println("Result:");
-                for (int rowIndex = 0; rowIndex < matrixOne.length; rowIndex++) {
-                    for (int colIndex = 0; colIndex < matrixOne.length; colIndex++) {
-                        System.out.print(matrixResult[rowIndex][colIndex] + " ");
-                    }
-                    System.out.println();
-                }
+                displayResult(matrixResult, matrixRowOne, matrixColOne);
                 break;
             case 3:
+                System.out.println("Multiplication Matrix");
+
                 System.out.print("Number of rows of First Matrix: ");
                 matrixRowOne = input.nextInt();
 
@@ -180,42 +172,20 @@ public class Matrices {
                     System.out.println("Two sizes are not match.");
                     break;
                 }
-                matrixOne = new int[matrixRowOne][matrixColOne];
-                matrixTwo = new int[matrixRowTwo][matrixColTwo];
-                matrixResult = new int[matrixRowOne][matrixColTwo];
 
-                for (int rowIndex = 0; rowIndex < matrixRowOne; rowIndex++) {
-                    for (int colIndex = 0; colIndex < matrixColOne; colIndex++) {
-                        System.out.println("Enter First Matrix number in index [" + (rowIndex + 1) + "] [" + (colIndex + 1) + "]: ");
-                        matrixOne[rowIndex][colIndex] = input.nextInt();
-                    }
-                }
-                for (int rowIndex = 0; rowIndex < matrixRowTwo; rowIndex++) {
-                    for (int colIndex = 0; colIndex < matrixColTwo; colIndex++) {
-                        System.out.println("Enter Second Matrix number in index [" + (rowIndex + 1) + "] [" + (colIndex + 1) + "]: ");
-                        matrixTwo[rowIndex][colIndex] = input.nextInt();
-                    }
-                }
+                matrixOne = getMatrixInput(input, matrixRowOne, matrixColOne, "First");
+                matrixTwo = getMatrixInput(input, matrixRowTwo, matrixColTwo, "Second");
+
                 /*
+                    sample
                     A = [1,2,3]     B = [7,8]
                         [4,5,6]         [9,10]
                                         [11,21]
                  */
-                for (int rowIndex = 0; rowIndex < matrixRowOne; rowIndex++) {
-                    for (int colIndex = 0; colIndex < matrixColTwo; colIndex++) {
-                        matrixResult[rowIndex][colIndex] = 0;
-                        for (int k = 0; k < matrixColOne; k++) {
-                            matrixResult[rowIndex][colIndex] += matrixOne[rowIndex][k] * matrixTwo[k][colIndex];
-                        }
-                    }
-                }
-                System.out.println("Result: ");
-                for (int rowIndex = 0; rowIndex < matrixRowOne; rowIndex++) {
-                    for (int colIndex = 0; colIndex < matrixColTwo; colIndex++) {
-                        System.out.print(matrixResult[rowIndex][colIndex] + " ");
-                    }
-                    System.out.println();
-                }
+
+                matrixResult = getMultiplicationMatrix(matrixOne, matrixTwo, matrixRowOne, matrixColOne, matrixColTwo);
+                displayResult(matrixResult, matrixRowOne, matrixColTwo);
+
                 break;
             case 4:
                 System.out.println("Exiting...");
