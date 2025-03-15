@@ -85,7 +85,7 @@ public class Matrices {
         System.out.println("Result:");
         for (int rowIndex = 0; rowIndex < matrixSize; rowIndex++) {
             for (int colIndex = 0; colIndex < matrixSize; colIndex++) {
-                System.out.print(matrixResult[rowIndex][colIndex] + "\t");
+                System.out.print(matrixResult[rowIndex][colIndex] + " \t");
             }
             System.out.println();
         }
@@ -96,7 +96,7 @@ public class Matrices {
         System.out.println("Result:");
         for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
             for (int colIndex = 0; colIndex < cols; colIndex++) {
-                System.out.print(matrixResult[rowIndex][colIndex] + "\t");
+                System.out.print(matrixResult[rowIndex][colIndex] + " \t");
             }
             System.out.println();
         }
@@ -104,94 +104,103 @@ public class Matrices {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int option;
-        int[][] matrixOne;
-        int[][] matrixTwo;
-        int[][] matrixResult;
+        char again;
 
-        //for matrix row one
-        int matrixRowOne;
+        do {
+            int option;
+            int[][] matrixOne;
+            int[][] matrixTwo;
+            int[][] matrixResult;
 
-        //for matrix row two
-        int matrixRowTwo;
+            //for matrix row one
+            int matrixRowOne;
 
-        //for matrix column one
-        int matrixColOne;
+            //for matrix row two
+            int matrixRowTwo;
 
-        //for matrix column two
-        int matrixColTwo;
+            //for matrix column one
+            int matrixColOne;
 
-        //this is for addition and subtraction matrix
-        int matrixSize;
+            //for matrix column two
+            int matrixColTwo;
 
-        displayOption();
-        option = input.nextInt();
-        input.nextLine();
+            //this is for addition and subtraction matrix
+            int matrixSize;
 
-        switch (option) {
-            case 1:
-                System.out.println("Addition Matrix");
-                System.out.print("Enter size of Matrix: ");
-                matrixSize = input.nextInt();
+            displayOption();
+            option = input.nextInt();
+            input.nextLine();
 
-                matrixOne = getMatrixInput(input, matrixSize, "First");
-                matrixTwo = getMatrixInput(input, matrixSize, "Second");
+            switch (option) {
+                case 1:
+                    System.out.println("Addition Matrix");
+                    System.out.print("Enter size of Matrix: ");
+                    matrixSize = input.nextInt();
 
-                matrixResult = getAdditionMatrixResult(matrixOne, matrixTwo, matrixSize);
+                    matrixOne = getMatrixInput(input, matrixSize, "First");
+                    matrixTwo = getMatrixInput(input, matrixSize, "Second");
 
-                //display the result
-                displayResult(matrixResult, matrixSize);
-                break;
-            case 2:
-                System.out.println("Subtraction Matrix");
-                System.out.print("Enter size of Matrix: ");
-                matrixSize = input.nextInt();
+                    matrixResult = getAdditionMatrixResult(matrixOne, matrixTwo, matrixSize);
 
-                matrixOne = getMatrixInput(input, matrixSize, "First");
-                matrixTwo = getMatrixInput(input, matrixSize, "Second");
-
-                matrixResult = getSubtractionMatrixResult(matrixOne, matrixTwo, matrixSize);
-
-                //display the result
-                displayResult(matrixResult, matrixSize);
-                break;
-            case 3:
-                System.out.println("Multiplication Matrix");
-
-                System.out.print("Number of rows of First Matrix: ");
-                matrixRowOne = input.nextInt();
-
-                System.out.print("Number of column of First Matrix: ");
-                matrixColOne = input.nextInt();
-
-                System.out.print("Number of rows of Second Matrix: ");
-                matrixRowTwo = input.nextInt();
-
-                System.out.print("Number of column of First Matrix: ");
-                matrixColTwo = input.nextInt();
-
-                if (matrixColOne != matrixRowTwo) {
-                    System.out.println("Two sizes are not match.");
+                    //display the result
+                    displayResult(matrixResult, matrixSize);
                     break;
-                }
+                case 2:
+                    System.out.println("Subtraction Matrix");
+                    System.out.print("Enter size of Matrix: ");
+                    matrixSize = input.nextInt();
 
-                matrixOne = getMatrixInput(input, matrixRowOne, matrixColOne, "First");
-                matrixTwo = getMatrixInput(input, matrixRowTwo, matrixColTwo, "Second");
+                    matrixOne = getMatrixInput(input, matrixSize, "First");
+                    matrixTwo = getMatrixInput(input, matrixSize, "Second");
 
-                /*
+                    matrixResult = getSubtractionMatrixResult(matrixOne, matrixTwo, matrixSize);
+
+                    //display the result
+                    displayResult(matrixResult, matrixSize);
+                    break;
+                case 3:
+                    System.out.println("Multiplication Matrix");
+
+                    System.out.print("Number of rows of First Matrix: ");
+                    matrixRowOne = input.nextInt();
+
+                    System.out.print("Number of column of First Matrix: ");
+                    matrixColOne = input.nextInt();
+
+                    System.out.print("Number of rows of Second Matrix: ");
+                    matrixRowTwo = input.nextInt();
+
+                    System.out.print("Number of column of First Matrix: ");
+                    matrixColTwo = input.nextInt();
+
+                    if (matrixColOne != matrixRowTwo) {
+                        System.out.println("Two sizes are not match.");
+                        break;
+                    }
+
+                    matrixOne = getMatrixInput(input, matrixRowOne, matrixColOne, "First");
+                    matrixTwo = getMatrixInput(input, matrixRowTwo, matrixColTwo, "Second");
+
+                    /*
                     sample
                     A = [1,2,3]     B = [7,8]
                         [4,5,6]         [9,10]
                                         [11,21]
-                 */
-                matrixResult = getMultiplicationMatrix(matrixOne, matrixTwo, matrixRowOne, matrixColOne, matrixColTwo);
-                displayResult(matrixResult, matrixRowOne, matrixColTwo);
+                     */
+                    matrixResult = getMultiplicationMatrix(matrixOne, matrixTwo, matrixRowOne, matrixColOne, matrixColTwo);
+                    displayResult(matrixResult, matrixRowOne, matrixColTwo);
 
-                break;
-            case 4:
-                System.out.println("Exiting...");
-                break;
-        }
-
+                    break;
+                case 4:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                    input.close();
+                    break;
+            }
+            System.out.println("Do you want to try again? [Y] \nPress any key to exit : ");
+            again = input.next().charAt(0);
+            input.nextLine();
+        } while (again == 'Y' || again == 'y');
+        input.close();
     }
 }
