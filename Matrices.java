@@ -9,7 +9,8 @@ public class Matrices {
         System.out.println("[1] Addition Matrix");
         System.out.println("[2] Subtraction Matrix");
         System.out.println("[3] Multiplication Matrix");
-        System.out.println("[4] Exit");
+        System.out.println("[4] Multiplication Scalar");
+        System.out.println("[5] Exit");
         System.out.print("Option: ");
     }
 
@@ -74,6 +75,18 @@ public class Matrices {
                 for (int k = 0; k < colsOne; k++) {
                     matrixResult[i][j] += matrixOne[i][k] * matrixTwo[k][j];
                 }
+            }
+        }
+
+        return matrixResult;
+    }
+
+    public static int[][] getMultiplicationScalarMatrix(int[][] matrix, int rows, int cols, int scalar) {
+        int[][] matrixResult = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrixResult[i][j] = scalar * matrix[i][j];
             }
         }
 
@@ -181,20 +194,41 @@ public class Matrices {
                     matrixOne = getMatrixInput(input, matrixRowOne, matrixColOne, "First");
                     matrixTwo = getMatrixInput(input, matrixRowTwo, matrixColTwo, "Second");
 
+                    matrixResult = getMultiplicationMatrix(matrixOne, matrixTwo, matrixRowOne, matrixColOne, matrixColTwo);
+                    displayResult(matrixResult, matrixRowOne, matrixColTwo);
+
                     /*
                     sample
                     A = [1,2,3]     B = [7,8]
                         [4,5,6]         [9,10]
                                         [11,21]
                      */
-                    matrixResult = getMultiplicationMatrix(matrixOne, matrixTwo, matrixRowOne, matrixColOne, matrixColTwo);
-                    displayResult(matrixResult, matrixRowOne, matrixColTwo);
-
                     break;
                 case 4:
+                    System.out.println("Multiplicataion Scalar Matrix");
+
+                    System.out.println("Enter Scalar Number (number to multiply): ");
+                    int scalar = input.nextInt();
+
+                    System.out.print("Enter row size of Matrix: ");
+                    matrixRowOne = input.nextInt();
+
+                    System.out.print("Enter column size of Matrix: ");
+                    matrixColOne = input.nextInt();
+
+                    matrixOne = getMatrixInput(input, matrixRowOne, matrixColOne, "Scalar");
+
+                    matrixResult = getMultiplicationScalarMatrix(matrixOne, matrixRowOne, matrixColOne, scalar);
+
+                    displayResult(matrixResult, matrixRowOne, matrixColOne);
+                    break;
+                case 5:
                     System.out.println("Exiting...");
                     System.exit(0);
                     input.close();
+                    break;
+                default:
+                    System.out.println("Invalid Input Please Try Again.");
                     break;
             }
             System.out.println("Do you want to try again? [Y] \nPress any key to exit : ");
