@@ -45,23 +45,33 @@ public class Matrices {
             option = input.nextInt();
             input.nextLine();
 
+            boolean isError;
             switch (option) {
                 case 1:
-                    System.out.println("Addition Matrix");
-                    System.out.print("Enter size of Matrix: ");
-                    matrixSize = input.nextInt();
+                    isError = true;
+                    while (isError) {
+                        try {
+                            System.out.println("Addition Matrix");
+                            System.out.print("Enter size of Matrix: ");
 
-                    matrixOne = op.getMatrixInput(input, matrixSize, "First");
-                    matrixTwo = op.getMatrixInput(input, matrixSize, "Second");
+                            matrixSize = input.nextInt();
+                            matrixOne = op.getMatrixInput(input, matrixSize, "First");
+                            matrixTwo = op.getMatrixInput(input, matrixSize, "Second");
+                            matrixResult = op.addMatrices(matrixOne, matrixTwo, matrixSize);
+                            //display the result
+                            op.displayResult(matrixResult, matrixSize);
 
-                    matrixResult = op.addMatrices(matrixOne, matrixTwo, matrixSize);
+                            isError = false;
+                        } catch (InputMismatchException ex) {
+                            System.out.println("You must enter a number!");
+                            input.next();
+                        }
+                    }
 
-                    //display the result
-                    op.displayResult(matrixResult, matrixSize);
                     break;
                 case 2:
-                    boolean isError = true;
-                    
+                    isError = true;
+
                     while (isError) {
                         try {
                             System.out.println("Subtraction Matrix");
