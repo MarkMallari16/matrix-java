@@ -1,5 +1,6 @@
 package matrices;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Matrices {
@@ -59,17 +60,27 @@ public class Matrices {
                     op.displayResult(matrixResult, matrixSize);
                     break;
                 case 2:
-                    System.out.println("Subtraction Matrix");
-                    System.out.print("Enter size of Matrix: ");
-                    matrixSize = input.nextInt();
+                    boolean isError = true;
+                    
+                    while (isError) {
+                        try {
+                            System.out.println("Subtraction Matrix");
+                            System.out.print("Enter size of Matrix: ");
 
-                    matrixOne = op.getMatrixInput(input, matrixSize, "First");
-                    matrixTwo = op.getMatrixInput(input, matrixSize, "Second");
+                            matrixSize = input.nextInt();
+                            matrixOne = op.getMatrixInput(input, matrixSize, "First");
+                            matrixTwo = op.getMatrixInput(input, matrixSize, "Second");
+                            matrixResult = op.subtractMatrices(matrixOne, matrixTwo, matrixSize);
+                            //display the result
+                            op.displayResult(matrixResult, matrixSize);
 
-                    matrixResult = op.subtractMatrices(matrixOne, matrixTwo, matrixSize);
+                            isError = false;
+                        } catch (InputMismatchException ex) {
+                            System.out.println("You must enter a number!");
+                            input.next();
+                        }
+                    }
 
-                    //display the result
-                    op.displayResult(matrixResult, matrixSize);
                     break;
                 case 3:
                     System.out.println("Multiplication Matrix");
