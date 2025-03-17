@@ -89,7 +89,7 @@ public class MatrixOperation implements Matrix {
     }
 
     public void displayResult(int[][] matrixResult, int matrixSize) {
-        //display
+
         System.out.println("Result:");
         for (int rowIndex = 0; rowIndex < matrixSize; rowIndex++) {
             for (int colIndex = 0; colIndex < matrixSize; colIndex++) {
@@ -99,8 +99,9 @@ public class MatrixOperation implements Matrix {
         }
     }
 
+    //override for multiplication
     public void displayResult(int[][] matrixResult, int rows, int cols) {
-        //display
+
         System.out.println("Result:");
         for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
             for (int colIndex = 0; colIndex < cols; colIndex++) {
