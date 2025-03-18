@@ -153,7 +153,7 @@ public class Matrices {
                     break;
             }
 
-            System.out.print("Do you want to try again? [Y] \nPress any key to exit : ");
+            System.out.print("Do you want to try again? [Y] \nPress [N] key to exit : ");
             again = input.next().charAt(0);
             input.nextLine();
         } while (again == 'Y' || again == 'y');
