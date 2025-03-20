@@ -135,9 +135,8 @@ public class MatrixOperation implements Matrix {
         
         rowIndex = 2
         colIndex = 0        
-        3 
          */
-        
+
         for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
             for (int colIndex = 0; colIndex < cols; colIndex++) {
                 matrixResult[colIndex][rowIndex] = matrix[rowIndex][colIndex];
@@ -147,7 +146,6 @@ public class MatrixOperation implements Matrix {
                  */
             }
         }
-
         return matrixResult;
     }
 }
