@@ -110,4 +110,37 @@ public class MatrixOperation implements Matrix {
             System.out.println();
         }
     }
+
+    public void displayTransposeResult(int[][] matrixResult, int rows, int cols) {
+        System.out.println("Result:");
+        for (int rowIndex = 0; rowIndex < cols; rowIndex++) {
+            for (int colIndex = 0; colIndex < rows; colIndex++) {
+                System.out.printf("%4d\t", matrixResult[rowIndex][colIndex]);
+            }
+            System.out.println();
+        }
+    }
+
+    @Override
+    public int[][] transposeMatrix(int[][] matrix, int rows, int cols) {
+        //2 3
+        int[][] matrixResult = new int[cols][rows];
+        /*
+        3 5
+        8 1 
+        4 6
+        
+        row = 3
+        col = 2
+        
+        3 
+         */
+        for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
+            for (int colIndex = 0; colIndex < cols; colIndex++) {
+                matrixResult[colIndex][rowIndex] = matrix[rowIndex][colIndex]; // ✅ Correct indexing
+            }
+        }
+
+        return matrixResult;
+    }
 }

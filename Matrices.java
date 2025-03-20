@@ -11,7 +11,8 @@ public class Matrices {
         System.out.println("[2] Subtraction Matrix");
         System.out.println("[3] Multiplication Matrix");
         System.out.println("[4] Multiplication Scalar");
-        System.out.println("[5] Exit");
+        System.out.println("[5] Transpose Matrix");
+        System.out.println("[6] Exit");
         System.out.print("Option: ");
     }
 
@@ -143,10 +144,24 @@ public class Matrices {
                     op.displayResult(matrixResult, matrixRowOne, matrixColOne);
                     break;
                 case 5:
+                    System.out.println("Transpose Matrix");
+
+                    System.out.println("Enter row size of Matrix");
+                    matrixRowOne = input.nextInt();
+
+                    System.out.println("Enter column size of Matrix: ");
+                    matrixColOne = input.nextInt();
+
+                    matrixOne = op.getMatrixInput(input, matrixRowOne, matrixColOne, "Transpose");
+
+                    matrixResult = op.transposeMatrix(matrixOne, matrixRowOne, matrixColOne);
+
+                    op.displayTransposeResult(matrixResult, matrixRowOne, matrixColOne);
+                    break;
+                case 6:
                     System.out.println("Exiting...");
                     input.close();
                     System.exit(0);
-
                     break;
                 default:
                     System.out.println("Invalid Input Please Try Again.");
