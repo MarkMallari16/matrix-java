@@ -124,7 +124,8 @@ public class Matrices {
                     A = [1,2,3]     B = [7,8]
                         [4,5,6]         [9,10]
                                         [11,21]
-                     */
+                    */
+                    
                     break;
                 case 4:
                     System.out.println("Multiplicataion Scalar Matrix");

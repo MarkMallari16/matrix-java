@@ -130,14 +130,21 @@ public class MatrixOperation implements Matrix {
         8 1 
         4 6
         
-        row = 3
-        col = 2
+        row = 2
+        col = 3
         
+        rowIndex = 2
+        colIndex = 0        
         3 
          */
+        
         for (int rowIndex = 0; rowIndex < rows; rowIndex++) {
             for (int colIndex = 0; colIndex < cols; colIndex++) {
-                matrixResult[colIndex][rowIndex] = matrix[rowIndex][colIndex]; // ✅ Correct indexing
+                matrixResult[colIndex][rowIndex] = matrix[rowIndex][colIndex];
+                /*
+                    3 8 4
+                    5 1 6
+                 */
             }
         }
 
